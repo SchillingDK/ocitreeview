@@ -1,0 +1,159 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #1a202c;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  min-width: 420px;
+  max-width: 640px;
+  width: 90%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #2d3748;
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #e2e8f0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  margin-right: 12px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #718096;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  background: #2d3748;
+  color: #e2e8f0;
+}
+
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-y: auto;
+  display: block;
+  max-height: calc(80vh - 60px);
+}
+
+.modal-table tbody tr {
+  border-bottom: 1px solid #2d3748;
+}
+
+.modal-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.modal-table th {
+  text-align: left;
+  padding: 8px 16px;
+  color: #718096;
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  white-space: nowrap;
+  width: 35%;
+  vertical-align: top;
+}
+
+.modal-table td {
+  padding: 8px 16px;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+.modal-table td a {
+  color: #63b3ed;
+  text-decoration: none;
+}
+
+.modal-table td a:hover {
+  text-decoration: underline;
+}
+
+.modal-ocid {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: #a0aec0;
+  word-break: break-all;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.modal-copy-btn {
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  color: #68d391;
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.modal-copy-btn:hover {
+  background: #3a4a60;
+}
+
+.modal-backup-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.modal-backup-total {
+  color: #a0aec0;
+}
+
+.modal-backup-failed {
+  color: #68d391;
+}
+
+.modal-backup-failed.modal-backup-failed-nonzero {
+  color: #fc8181;
+  font-weight: 600;
+}
+
+.modal-backup-lastok {
+  color: #68d391;
+}
+
+.modal-backup-never {
+  color: #718096;
+  font-style: italic;
+}
+
+.modal-backup-missing {
+  color: #f6ad55;
+  font-weight: 600;
+}
