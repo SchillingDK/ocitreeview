@@ -1,0 +1,22 @@
+# Python
+backend/.venv/
+backend/__pycache__/
+backend/*.pyc
+backend/*.pyo
+*.egg-info/
+.env
+
+# Node / React
+frontend/node_modules/
+frontend/build/
+
+# OCI credentials – never commit these
+.oci/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,19 @@
+services:
+
+  backend:
+    build: ./backend
+    ports:
+      - "8010:8010"
+    volumes:
+      # Mount your local OCI config (read-only) into the container.
+      # IMPORTANT: paths inside ~/.oci/config must use /root/.oci/... as the key_file path.
+      - "${HOME}/.oci:/root/.oci:ro"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3010:3010"
+    depends_on:
+      - backend
+    restart: unless-stopped
