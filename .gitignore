@@ -20,3 +20,4 @@ frontend/build/
 # OS
 .DS_Store
 Thumbs.db
+nohup.out
