@@ -23,6 +23,8 @@ docker compose up -d --build
 
 The backend caches the full tree in memory. Hit **Reload** in the UI (or `GET /api/tree?force=true`) to refresh.
 
+> **Note:** If you add or update frontend dependencies, run `npm install` inside `frontend/` and commit the updated `package-lock.json` before rebuilding.
+
 ## Running without Docker
 
 ```sh
@@ -35,14 +37,16 @@ The backend caches the full tree in memory. Hit **Reload** in the UI (or `GET /a
 Make sure systemd is enabled in WSL (`/etc/wsl.conf` should contain `systemd=true`), then:
 
 ```sh
-sudo cp ocitreeview.service /etc/systemd/system/
+sudo cp ocitreeview@.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now ocitreeview
+sudo systemctl enable --now ocitreeview@$USER
 ```
+
+The `@$USER` suffix tells systemd to run the service as your user, with the working directory set to `/home/$USER/ocitreeview`. Anyone who checks out this repo just substitutes their own username.
 
 To stop / disable:
 
 ```sh
-sudo systemctl stop ocitreeview
-sudo systemctl disable ocitreeview
+sudo systemctl stop ocitreeview@$USER
+sudo systemctl disable ocitreeview@$USER
 ```

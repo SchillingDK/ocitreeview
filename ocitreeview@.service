@@ -6,10 +6,11 @@ After=docker.service network-online.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=/home/mpr/ocitreeview
+User=%i
+WorkingDirectory=/home/%i/ocitreeview
 ExecStart=/usr/bin/docker compose up -d --build
 ExecStop=/usr/bin/docker compose down
-TimeoutStartSec=120
+TimeoutStartSec=600
 
 [Install]
 WantedBy=multi-user.target
