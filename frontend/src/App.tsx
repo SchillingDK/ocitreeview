@@ -11,8 +11,14 @@ const API_BASE = 'http://localhost:8010';
 // Default estimated load time for the very first fetch (ms).
 const DEFAULT_ESTIMATE_MS = 30_000;
 
+function formatCachedAt(cachedAt: string): string {
+  const dt = new Date(cachedAt);
+  return dt.toLocaleString('da-DK', { dateStyle: 'short', timeStyle: 'medium', timeZone: 'Europe/Copenhagen' })
+    + ' ' + dt.toLocaleTimeString('da-DK', { timeZoneName: 'short', timeZone: 'Europe/Copenhagen' }).split(' ').pop();
+}
+
 function formatCacheAge(cachedAt: string): string {
-  const then = new Date(cachedAt.replace(' UTC', 'Z'));
+  const then = new Date(cachedAt);
   const diffMs = Date.now() - then.getTime();
   const diffMin = Math.floor(diffMs / 60000);
   if (diffMin < 1) return 'just now';
@@ -110,7 +116,7 @@ function OCITree() {
         <div className="header-right">
           {data?.cached_at && !isFetching && (
             <span className="cache-age" title={`Data fetched from OCI at ${data.cached_at}`}>
-              Data from OCI: {data.cached_at} ({formatCacheAge(data.cached_at)})
+              Data from OCI: {formatCachedAt(data.cached_at)} ({formatCacheAge(data.cached_at)})
             </span>
           )}
           <button

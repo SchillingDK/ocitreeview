@@ -3,7 +3,15 @@ FastAPI backend entry point.
 Run with: uvicorn main:app --reload
 """
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+
+COPENHAGEN = timezone(timedelta(hours=1))  # CET; DST is handled below
+
+
+def _now_cph() -> str:
+    import zoneinfo
+    tz = zoneinfo.ZoneInfo("Europe/Copenhagen")
+    return datetime.now(tz).isoformat(timespec='seconds')
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -38,7 +46,7 @@ def get_full_tree(force: bool = Query(False, description="Pass true to bypass ca
         return _tree_cache
     regions_data = [build_region_tree(region) for region in REGIONS]
     _tree_cache = {
-        "cached_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "cached_at": _now_cph(),
         "regions": regions_data,
     }
     return _tree_cache
